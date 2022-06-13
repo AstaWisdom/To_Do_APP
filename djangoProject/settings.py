@@ -135,11 +135,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/images/')
 # My settings
 LOGIN_URL = 'users:login'
 
-
-# Heroku settings
-import django_heroku
-django_heroku.settings(locals())
-
 if os.environ.get('DEBUG') == True:
     DEBUG = True
 elif os.environ.get('DEBUG') == False:
