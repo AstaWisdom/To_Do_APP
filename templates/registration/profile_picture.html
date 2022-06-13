@@ -1,0 +1,27 @@
+{% extends 'learning_logs/base.html' %}
+{% load bootstrap4 %}
+{% block page_header %}
+    <h2><a href="{% url 'users:user_profile' user.id %}">User Profile</a>/ Photo Change</h2>
+    {% if messages %}
+            <ul class="messages">
+        {% for message in messages %}
+        <p{% if message.tags %} align="center" class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+        {% endfor %}
+            </ul>
+        {% endif %}
+{% endblock page_header %}
+{% block content %}
+    <form class="form" method="post" action="{% url 'users:profile_picture' user.id %}" enctype="multipart/form-data">
+    <div align="center" >
+            <img src="{{ user.userprofile.user_pic.url }}" width="240" height="240">
+    </div>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div align="center">
+        {% buttons %}
+        <button name="submit" class="btn btn-primary">Change Photo</button>
+        {% endbuttons %}
+    </div>
+
+    </form>
+{% endblock content %}
